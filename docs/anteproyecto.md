@@ -1,16 +1,14 @@
 # Anteproyecto
 
-> NOTA: Incluir diagramas donde proceda (diagramas de clases, casos de uso, entidad relación, ...).
-
 ## OBJETIVOS
 
-*[TODO] Se indicará de forma genérica y sin entrar en concreciones el objetivo
-que se pretende alcanzar al realizar el proyecto. Se indicará igualmente donde
-será utilizado el proyecto obtenido.*
+El objetivo de este proyecto será desarrollar una aplicación de escritorio a través de la cual, pasándole una función matemática, nos devuelva su representación gráfica. Además, también podremos mostrar un estudio de la propia gráfica al usuario (límites de la función, continuidad, etc.). Finalmente, como parte final del proyecto, se tratará que la propia aplicación permita no sólo introducir funciones, si no también introducir ecuaciones, que la aplicación tratará de resolver.
 
-## PREANALISIS DE LO EXISTENTE (Opcional)
+El objetivo del aplicativo será facilitar el trabajo de estudio de funciones, en ocasiones tedioso, a estiudiantes de matemáticas avanzadas, ya sea para comprobar sus resultados o para resolver los propios problemas.
 
-*[TODO] Si procede, se informará brevemente sobre el funcionamiento del sistema actual. El que vamos a reemplazar o a mejorar. Este sistema no tiene por qué estar necesariamente automatizado pudiendo realizarse actualmente de forma manual por personas.*
+## PREANÁLISIS DE LO EXISTENTE
+
+Si bien el proyecto se realizará desde 0, se untilizarán algunos programas ya existentes de referencia, como puede ser GeoGebra. Sin embargo, somo ya se ha establecido, la idea del proyecto es realizarlo desde 0, así que estas aplicaciones no serán más que una guía parcial de como se puede enfocar el diseño del aplicativo.
 
 ## ANÁLISIS DEL SOFTWARE
 
