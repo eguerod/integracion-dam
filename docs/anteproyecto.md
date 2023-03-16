@@ -26,19 +26,19 @@ El Software lo diseñaremos íntegramente en Java, creando así una aplicación 
 
 A un nivel básico, el funcionamiento del aplicativo será el siguiente:
 
-![PMR Proyecto Niv 0.jpg](C:\Users\Acer\Desktop\Proyecto_Final\Imagenes\PMR%20Proyecto%20Niv%200.jpg)
+![PMR Proyecto Niv 0.jpg](.\imgs\anteproyecto\PMR%20Proyecto%20Niv%200.jpg)
 
 El usuario, a través de una interfaz desarrllada con JavaFX, introducirá la función o ecuación deseada. El aplicativo la procesará y devolverá al usuario los resultados pertinentes.
 
 Si ahondamos un poco más, vemos que se puede seprar en dos partes: Procesamiento de la consulta y Devolución de resultados
 
-![PMR Proyecto Niv 1.jpg](C:\Users\Acer\Desktop\Proyecto_Final\Imagenes\PMR%20Proyecto%20Niv%201.jpg)
+![PMR Proyecto Niv 1.jpg](.\imgs\anteproyecto\PMR%20Proyecto%20Niv%201.jpg)
 
 La devolución de resultados es simple: Únicamente se tendrán que mostrar, a través de la interfaz desarrollada en JavaFX, los resultados obtenidos en la fase de procesamiento.
 
 El procesamiento de la consulta, por otra parte, será un poco más complejo: Se analizará el *imput* del usuario, y se decidirá si se trata de una función, una ecuación o otra cosa. 
 
-![PMR Proyecto Niv 2 Proc Dat.jpg](C:\Users\Acer\Desktop\Proyecto_Final\Imagenes\PMR%20Proyecto%20Niv%202%20Proc%20Dat.jpg)
+![PMR Proyecto Niv 2 Proc Dat.jpg](.\imgs\anteproyecto\PMR%20Proyecto%20Niv%202%20Proc%20Dat.jpg)
 
 Si es una ecuación, se calculará el resultado, y este dato será el que se le mostrará al usuario.
 
@@ -46,7 +46,7 @@ Por otra parte, si los datos introducidos no son ni una función ni una ecuació
 
 Lo complicado viene en caso de ser una función: En esa situación se tendrá que dibujar el gráfico, se estudiarán las condiciones de la función, y serán esos datos los que mostrará el aplicativo al usuario.
 
-![PMR Proyecto Niv 3 Est Fun.jpg](C:\Users\Acer\Desktop\Proyecto_Final\Imagenes\PMR%20Proyecto%20Niv%203%20Est%20Fun.jpg)
+![PMR Proyecto Niv 3 Est Fun.jpg](.\imgs\anteproyecto\PMR%20Proyecto%20Niv%203%20Est%20Fun.jpg)
 
 ## ESTIMACIÓN DE COSTES
 
