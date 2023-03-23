@@ -22,7 +22,7 @@ El objetivo final a implementar, una vez se hayan logrado los dos anteriores, se
 
 ## DISEÑO DEL SOFTWARE
 
-El Software lo diseñaremos íntegramente en Java, creando así una aplicación en JavaFX usando las herramientas que hemos aprendido a manejar a lo largo del ciclo para ello. Esto quiere decir que a la hora de diseñaqr las interfaces, usaremos SceneBuilder, mientras que para programar la aplicación haremos uso de Eclipse junto a la extensión de JavaFX. Además, haremos amplio uso de las bibliotecas y clases relacionadas con las matemáticas de Java, en particular la clase *Math*, así como de *libraries* de representación gráfica.
+El Software lo diseñaremos íntegramente en Java, creando así una aplicación en JavaFX usando las herramientas que hemos aprendido a manejar a lo largo del ciclo para ello. Esto quiere decir que a la hora de diseñar las interfaces, usaremos SceneBuilder, mientras que para programar la aplicación haremos uso de Eclipse junto a la extensión de JavaFX. Además, haremos amplio uso de las bibliotecas y clases relacionadas con las matemáticas de Java, en particular la clase *Math*, así como de *libraries* de representación gráfica.
 
 A un nivel básico, el funcionamiento del aplicativo será el siguiente:
 
