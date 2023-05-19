@@ -261,50 +261,40 @@ public class GraphController implements Initializable {
 //					}
 
 					Double yRound = round(y, 3);
-					if((function.evaluateAt(xRound, 0, 0) % 1 == 0
-							&& function.evaluateAt(xRound + ratio, 0, 0) % 1 == 0
-							&& function.evaluateAt(xRound - ratio, 0, 0) % 1 == 0)) {
-						if(xRound%1==0) {
-							dataSeries.getData().add((new XYChart.Data<>(xRound, xRound)));
-							discontinuidad = true;
-							graphLineChart.getData().add(dataSeries);
-							dataSeries.setName(functionProperty.get() + " (x<" + xRound + ")");
-							dataSeries = new XYChart.Series<>();
-							dataSeries.getData().add((new XYChart.Data<>(xRound, yRound)));
-							dataSeries.setName(functionProperty.get() + " (x>" + xRound + ")");
-						} else
-							dataSeries.getData().add((new XYChart.Data<>(xRound, yRound)));
-						System.out.println(xRound + " , " + yRound);
-						if (yRound > maxY) {
-							maxX = xRound;
-							maxY = yRound;
-						}
-						if (yRound < minY) {
-							minY = yRound;
-							minX = xRound;
-						}
-					} else {
-						if (((Double.isFinite(function.evaluateAt(xRound - ratio, 0, 0))
-								&& round(function.evaluateAt(xRound - ratio, 0, 0), 3) != 0
-								&& yRound / function.evaluateAt(xRound - ratio, 0, 0) < 0)
-						) && dataSeries.getData().size() > 0) {
-							discontinuidad = true;
-							graphLineChart.getData().add(dataSeries);
-							dataSeries.setName(functionProperty.get() + " (x<" + xRound + ")");
-							dataSeries = new XYChart.Series<>();
-							dataSeries.setName(functionProperty.get() + " (x>" + xRound + ")");
-						}
-						System.out.println(xRound + " , " + yRound);
-						if (yRound > maxY) {
-							maxX = xRound;
-							maxY = yRound;
-						}
-						if (yRound < minY) {
-							minY = yRound;
-							minX = xRound;
-						}
-						dataSeries.getData().add((new XYChart.Data<>(xRound, yRound)));
+					/*
+					 * if((function.evaluateAt(xRound, 0, 0) % 1 == 0 && function.evaluateAt(xRound
+					 * + ratio, 0, 0) % 1 == 0 && function.evaluateAt(xRound - ratio, 0, 0) % 1 ==
+					 * 0)) { if(xRound%1==0) { dataSeries.getData().add((new XYChart.Data<>(xRound,
+					 * xRound))); discontinuidad = true; graphLineChart.getData().add(dataSeries);
+					 * dataSeries.setName(functionProperty.get() + " (x<" + xRound + ")");
+					 * dataSeries = new XYChart.Series<>(); dataSeries.getData().add((new
+					 * XYChart.Data<>(xRound, yRound))); dataSeries.setName(functionProperty.get() +
+					 * " (x>" + xRound + ")"); } else dataSeries.getData().add((new
+					 * XYChart.Data<>(xRound, yRound))); System.out.println(xRound + " , " +
+					 * yRound); if (yRound > maxY) { maxX = xRound; maxY = yRound; } if (yRound <
+					 * minY) { minY = yRound; minX = xRound; } } else {
+					 */
+					if (((Double.isFinite(function.evaluateAt(xRound - ratio, 0, 0))
+							&& round(function.evaluateAt(xRound - ratio, 0, 0), 3) != 0
+							&& yRound / function.evaluateAt(xRound - ratio, 0, 0) < 0))
+							&& dataSeries.getData().size() > 0) {
+						discontinuidad = true;
+						graphLineChart.getData().add(dataSeries);
+						dataSeries.setName(functionProperty.get() + " (x<" + xRound + ")");
+						dataSeries = new XYChart.Series<>();
+						dataSeries.setName(functionProperty.get() + " (x>" + xRound + ")");
 					}
+					System.out.println(xRound + " , " + yRound);
+					if (yRound > maxY) {
+						maxX = xRound;
+						maxY = yRound;
+					}
+					if (yRound < minY) {
+						minY = yRound;
+						minX = xRound;
+					}
+					dataSeries.getData().add((new XYChart.Data<>(xRound, yRound)));
+//					}
 				}
 			}
 		}
@@ -385,7 +375,6 @@ public class GraphController implements Initializable {
 		if (result.isPresent() && result.get() == ButtonType.OK) {
 			Platform.exit();
 		}
-
 	}
 
 	@FXML
