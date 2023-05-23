@@ -1,5 +1,7 @@
 GraphMath/.project
 /GraphMath/.settings/
 GraphMath/.classpath
-/GraphMath/target/classes
-*.class
+/GraphMath/target/
+/GraphMath/target/classes/
+/GraphMath/target/classes/fxml/
+/*.class/

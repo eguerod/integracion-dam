@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<GridPane fx:id="view" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane id="stage" fx:id="view" hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/styles.css" vgap="5.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -21,108 +23,114 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <HBox alignment="CENTER" GridPane.columnIndex="1">
+      <HBox alignment="CENTER" GridPane.columnSpan="3">
          <children>
-            <Label text="HOJA DE OPERACIONES" />
+            <Label id="name" text="HOJA DE OPERACIONES" underline="true">
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.rowIndex="1">
+      <HBox id="gridCell" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.rowIndex="1">
          <children>
-            <Label text="Suma:" />
+            <Label id="name" text="Suma:" underline="true" />
             <Label text="x+y" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <HBox id="gridCell" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <Label text="Resta:" />
+            <Label id="name" text="Resta:" underline="true" />
             <Label text="x-y" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+      <HBox id="gridCell" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
          <children>
-            <Label text="Multiplicación:" />
+            <Label id="name" text="Multiplicación:" underline="true" />
             <Label text="x*y" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.rowIndex="2">
+      <HBox id="gridCell" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.rowIndex="2">
          <children>
-            <Label text="División:" />
+            <Label id="name" text="División:" underline="true" />
             <Label text="x/y" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <HBox id="gridCell" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <children>
-            <Label text="Exponencial:" />
+            <Label id="name" text="Exponencial:" underline="true" />
             <Label text="x^y" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+      <HBox id="gridCell" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
          <children>
-            <Label text="Valor absoluto:" />
+            <Label id="name" text="Valor absoluto:" underline="true" />
             <Label text="abs(x)" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+      <HBox id="gridCell" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
          <children>
-            <Label text="Logaritmo (Base y):" />
+            <Label id="name" text="Logaritmo (Base y):" underline="true" />
             <Label text="log(x,y)" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
+      <HBox id="gridCell" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
          <children>
             <HBox alignment="CENTER" spacing="5.0">
                <children>
-                  <Label text="Seno:" />
+                  <Label id="name" text="Seno:" underline="true" />
                   <Label text="sin(x)" />
                </children>
             </HBox>
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+      <HBox id="gridCell" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
          <children>
-            <Label text="Coseno:" />
+            <Label id="name" text="Coseno:" underline="true" />
             <Label text="cos(x)" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+      <HBox id="gridCell" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                <children>
-                  <Label text="Tangente:" />
+                  <Label id="name" text="Tangente:" underline="true" />
                   <Label text="tan(x)" />
                </children>
             </HBox>
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+      <HBox id="gridCell" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
          <children>
-            <Label text="Cosecante:" />
+            <Label id="name" text="Cosecante:" underline="true" />
             <Label text="csc(x)" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+      <HBox id="gridCell" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
          <children>
-            <Label text="Cotangente:" />
+            <Label id="name" text="Cotangente:" underline="true" />
             <Label text="cot(x)" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.rowIndex="3">
+      <HBox id="gridCell" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.rowIndex="3">
          <children>
-            <Label text="Raíz cuadrada:" />
+            <Label id="name" text="Raíz cuadrada:" underline="true" />
             <Label text="sqrt(x)" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <HBox id="gridCell" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <children>
-            <Label text="Raíz n-ésima:" />
+            <Label id="name" text="Raíz n-ésima:" underline="true" />
             <Label text="nthroot(x,n)" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" spacing="5.0" GridPane.rowIndex="5">
+      <HBox id="gridCell" alignment="CENTER" spacing="5.0" GridPane.rowIndex="5">
          <children>
-            <Label text="Secante:" />
+            <Label id="name" text="Secante:" underline="true" />
             <Label text="sec(x)" />
          </children>
       </HBox>
    </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
 </GridPane>

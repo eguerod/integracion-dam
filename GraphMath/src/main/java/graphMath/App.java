@@ -11,7 +11,6 @@ public class App extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		App.primaryStage = primaryStage;
-		
 		primaryStage.setTitle("GraphMath");
 		primaryStage.setScene(new Scene(controller.getView()));
 		primaryStage.setMinWidth(500);
@@ -20,5 +19,4 @@ public class App extends Application {
 		primaryStage.centerOnScreen();
 		primaryStage.show();
 	}
-
 }

@@ -1,0 +1,72 @@
+#stage {
+    -fx-background-color: #fdffcc;
+    background-color: #fdffcc;
+}
+
+#selectableText {
+    -fx-accent: #df861d;
+    -fx-focus-color: #df861d;
+    -fx-faint-focus-color: #d3524422;
+    -fx-text-fill: #171820;
+}
+
+#graphButton {
+    -fx-background-color: #df861d;
+    background-color: #df861d;
+    -fx-text-fill: white;
+}
+
+#graphButton:active {
+    -fx-background-color: #aa3d01;
+    background-color: #aa3d01;
+    -fx-text-fill: white;
+}
+
+#barraMenu {
+    -fx-background-color: #df861d;
+    background-color: #df861d;
+}
+
+#menuSection:hover,
+#menuSection:focused,
+#menuSection:showing {
+    -fx-background-color: #aa3d01;
+    background-color: #aa3d01;
+}
+
+#itemMenu {
+    -fx-background-color: #fdffcc;
+    background-color: #fdffcc;
+}
+
+#itemMenu:hover,
+#itemMenu:focused,
+#itemMenu:showing {
+    -fx-background-color: #aa3d01;
+    background-color: #aa3d01;
+}
+
+.context-menu {
+    -fx-padding: 0;
+    padding: 0;
+}
+
+.menu-item {
+    -fx-padding: 3;
+    padding: 3;
+}
+
+#gridCell {
+    -fx-border-width: 1;
+    -fx-border-color: #aa3d01;
+    -fx-border-insets: 1;
+    -fx-border-style: solid inside;
+}
+
+#name {
+    -fx-font-weight: bold;
+}
+
+#ventana {
+    -fx-background-color: #f6ebf9;
+}

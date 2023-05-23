@@ -14,18 +14,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="view" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane id="stage" fx:id="view" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <MenuBar fx:id="graphMenu" BorderPane.alignment="CENTER">
+      <MenuBar id="barraMenu" fx:id="graphMenu" BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="Ventana">
+          <Menu id="menuSection" mnemonicParsing="false" text="Ventana">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#onNewFunction" text="Nueva Ecuación">
+              <MenuItem id="itemMenu" mnemonicParsing="false" onAction="#onNewFunction" text="Nueva Ecuación">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
-                  <MenuItem mnemonicParsing="false" onAction="#onExit" text="Salir">
+                  <MenuItem id="itemMenu" mnemonicParsing="false" onAction="#onExit" text="Salir">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
@@ -57,13 +57,16 @@
                </children>
             </HBox>
          </children>
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
       </VBox>
    </center>
    <bottom>
       <HBox alignment="CENTER" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="Punto(s) de corte:" />
-            <TextField fx:id="pointText" editable="false" HBox.hgrow="ALWAYS" />
+            <TextField id="selectableText" fx:id="pointText" editable="false" HBox.hgrow="ALWAYS" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

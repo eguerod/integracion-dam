@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<BorderPane fx:id="view" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane id="stage" fx:id="view" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox alignment="BOTTOM_CENTER" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
@@ -29,11 +29,22 @@
                   <Font name="Calibri Bold" size="30.0" />
                </font>
             </Label>
-            <HBox alignment="CENTER" VBox.vgrow="ALWAYS" />
-            <VBox alignment="CENTER" VBox.vgrow="NEVER">
+            <HBox alignment="CENTER" VBox.vgrow="SOMETIMES" />
+            <HBox alignment="BOTTOM_CENTER" spacing="5.0" VBox.vgrow="NEVER">
                <children>
-                  <JFXButton fx:id="cheatSheetButton" onAction="#onCheatSheetClicked" text="Hoja de Operaciones" />
-               </children></VBox>
+                  <FontIcon iconLiteral="mdi2f-function-variant" iconSize="24" />
+                  <TextField id="selectableText" fx:id="functionTextField" minHeight="-Infinity" minWidth="-Infinity" promptText="Función" HBox.hgrow="ALWAYS" />
+                  <JFXButton id="graphButton" fx:id="functionButton" buttonType="RAISED" defaultButton="true" minHeight="-Infinity" minWidth="-Infinity" onAction="#onResolveAction" text="Resolver" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <VBox alignment="CENTER" VBox.vgrow="SOMETIMES">
+               <children>
+                  <JFXButton id="graphButton" fx:id="cheatSheetButton" buttonType="RAISED" onAction="#onCheatSheetClicked" text="Hoja de Operaciones" />
+               </children>
+            </VBox>
             <GridPane hgap="5.0" vgap="5.0" VBox.vgrow="NEVER">
               <columnConstraints>
                   <ColumnConstraints hgrow="NEVER" minWidth="-Infinity" />
@@ -47,28 +58,18 @@
               </rowConstraints>
                <children>
                   <Label focusTraversable="false" text="Min X: " />
-                  <TextField fx:id="minXText" promptText="-10" GridPane.columnIndex="1" />
+                  <TextField id="selectableText" fx:id="minXText" promptText="-10" GridPane.columnIndex="1" />
                   <Label focusTraversable="false" text=" Max X: " GridPane.columnIndex="2" />
-                  <TextField fx:id="maxXText" promptText="10" GridPane.columnIndex="3" />
+                  <TextField id="selectableText" fx:id="maxXText" promptText="10" GridPane.columnIndex="3" />
                   <Label focusTraversable="false" text="Min Y: " GridPane.rowIndex="1" />
-                  <TextField fx:id="minYText" promptText="-10" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField id="selectableText" fx:id="minYText" promptText="-10" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label focusTraversable="false" text=" Max Y: " GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <TextField fx:id="maxYText" promptText="10" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <TextField id="selectableText" fx:id="maxYText" promptText="10" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </GridPane>
-            <HBox alignment="BOTTOM_CENTER" spacing="5.0" VBox.vgrow="NEVER">
-               <children>
-                  <FontIcon iconLiteral="mdi2f-function-variant" iconSize="24" />
-                  <TextField fx:id="functionTextField" minHeight="-Infinity" minWidth="-Infinity" promptText="Función" HBox.hgrow="ALWAYS" />
-                  <JFXButton fx:id="functionButton" defaultButton="true" minHeight="-Infinity" minWidth="-Infinity" onAction="#onResolveAction" text="Resolver" />
-               </children>
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
-            </HBox>
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

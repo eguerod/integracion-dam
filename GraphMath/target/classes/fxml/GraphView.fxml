@@ -19,27 +19,30 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<BorderPane fx:id="view" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane id="stage" fx:id="view" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <MenuBar fx:id="graphMenu" BorderPane.alignment="CENTER">
+      <MenuBar id="barraMenu" fx:id="graphMenu" BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="Ventana">
+          <Menu id="menuSection" mnemonicParsing="false" text="Ventana">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#onNewFunction" text="Nueva Función">
+                  <MenuItem id="itemMenu" mnemonicParsing="false" onAction="#onNewFunction" text="Nueva Función">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
-                  <MenuItem mnemonicParsing="false" onAction="#onExit" text="Salir">
+                  <MenuItem id="itemMenu" mnemonicParsing="false" onAction="#onExit" text="Salir">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
                </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Función">
+          <Menu id="menuSection" mnemonicParsing="false" text="Función">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#inInvertAxisX" text="Invertir Eje X" />
-                  <MenuItem mnemonicParsing="false" onAction="#inInvertAxisY" text="Invertir Eje Y" />
+              <MenuItem id="itemMenu" mnemonicParsing="false" onAction="#inInvertAxisX" text="Invertir Eje X" />
+                  <MenuItem id="itemMenu" mnemonicParsing="false" onAction="#inInvertAxisY" text="Invertir Eje Y" />
             </items>
+               <accelerator>
+                  <KeyCodeCombination alt="UP" code="V" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+               </accelerator>
           </Menu>
         </menus>
       </MenuBar>
@@ -64,6 +67,9 @@
                   </VBox>
                </children></HBox>
          </children>
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
       </VBox>
    </center>
    <right>
@@ -84,12 +90,12 @@
         </rowConstraints>
          <children>
             <Label text="Máximo aprox.:" />
-            <TextField fx:id="maxText" alignment="CENTER" editable="false" focusTraversable="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES">
+            <TextField id="selectableText" fx:id="maxText" alignment="CENTER" editable="false" focusTraversable="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin></TextField>
             <Label text="Mínimo aprox.:" GridPane.rowIndex="1" />
-            <TextField fx:id="minText" alignment="CENTER" editable="false" focusTraversable="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1">
+            <TextField id="selectableText" fx:id="minText" alignment="CENTER" editable="false" focusTraversable="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin></TextField>
@@ -98,11 +104,11 @@
             <Label text="Recorrido aprox.:" visible="false" GridPane.rowIndex="7" />
             <TextField fx:id="recText" alignment="CENTER" editable="false" focusTraversable="false" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <Label text="Continuidad:" GridPane.rowIndex="2" />
-            <TextField fx:id="contText" alignment="CENTER" editable="false" focusTraversable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField id="selectableText" fx:id="contText" alignment="CENTER" editable="false" focusTraversable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="Lim x -&gt; Inf.:" GridPane.rowIndex="3" />
-            <TextField fx:id="limInfText" alignment="CENTER" editable="false" focusTraversable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField id="selectableText" fx:id="limInfText" alignment="CENTER" editable="false" focusTraversable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label text="Lim x -&gt; -Inf.:" GridPane.rowIndex="4" />
-            <TextField fx:id="limMinusText" alignment="CENTER" editable="false" focusTraversable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField id="selectableText" fx:id="limMinusText" alignment="CENTER" editable="false" focusTraversable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <GridPane hgap="5.0" GridPane.columnSpan="2" GridPane.rowIndex="5">
               <columnConstraints>
                   <ColumnConstraints halignment="CENTER" hgrow="NEVER" />
@@ -116,14 +122,14 @@
               </rowConstraints>
                <children>
                   <Label text="x -&gt;" />
-                  <TextField fx:id="limitX" prefWidth="50.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" />
-                  <Button fx:id="limitButton" mnemonicParsing="false" onAction="#onLimitAction" GridPane.columnIndex="2">
+                  <TextField id="selectableText" fx:id="limitX" prefWidth="50.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" />
+                  <Button id="graphButton" fx:id="limitButton" mnemonicParsing="false" onAction="#onLimitAction" GridPane.columnIndex="2">
                      <graphic>
                         <FontIcon iconLiteral="mdi2a-arrow-right-bold" />
                      </graphic>
                   </Button>
                   <Label text="f(x) -&gt;" GridPane.columnIndex="3" />
-                  <TextField fx:id="limitFx" editable="false" focusTraversable="false" prefWidth="100.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" />
+                  <TextField id="selectableText" fx:id="limitFx" editable="false" focusTraversable="false" prefWidth="100.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" />
                </children>
             </GridPane>
          </children>
