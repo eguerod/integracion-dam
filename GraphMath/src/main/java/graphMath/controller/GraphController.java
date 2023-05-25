@@ -43,6 +43,9 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.converter.DoubleStringConverter;
 
+/**
+ * Controlador de la vista de un gráfico para una ecuación.
+ */
 public class GraphController implements Initializable {
 
 	private StringProperty functionProperty = new SimpleStringProperty();
@@ -106,10 +109,26 @@ public class GraphController implements Initializable {
 	@FXML
 	private TextField contText;
 
+	/**
+	 * Retorna la vista del controlador.
+	 * 
+	 * @return La vista del controlador.
+	 */
 	public BorderPane getView() {
 		return view;
 	}
 
+	/**
+	 * Constructor de la clase GraphController que crea una instancia del
+	 * controlador de gráficos y establece los valores de las propiedades de
+	 * función, mínimos y máximos de coordenadas en 4 dimensiones.
+	 * 
+	 * @param function Define la función a graficar.
+	 * @param minX     Define el valor mínimo del eje X en el gráfico.
+	 * @param maxX     Define el valor máximo del eje X en el gráfico.
+	 * @param minY     Define el valor mínimo del eje Y en el gráfico.
+	 * @param maxY     Define el valor máximo del eje Y en el gráfico.
+	 */
 	public GraphController(String function, int minX, int maxX, int minY, int maxY) {
 		functionProperty.setValue(function);
 
@@ -139,6 +158,20 @@ public class GraphController implements Initializable {
 		}
 	}
 
+	/**
+	 * Inicializa el controlador de la gráfica. Crea un nuevo objeto
+	 * ExpressionParser para analizar la función definida por la propiedad
+	 * functionProperty. Luego, crea una nueva tarea con un método para generar la
+	 * gráfica a partir de la función analizada, la cual se ejecuta en un hilo
+	 * separado. Cuando la tarea termina, la gráfica resultante se agrega a la vista
+	 * de la ventana principal y se actualizan los valores de las propiedades
+	 * minProperty, maxProperty, limInfText, limMinusText y contText con los
+	 * respectivos valores calculados.
+	 * 
+	 * @param location  la ubicación del recurso FXML utilizado para inicializar el
+	 *                  controlador
+	 * @param resources los recursos utilizados por la aplicación
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		parser = new ExpressionParser();
@@ -197,6 +230,14 @@ public class GraphController implements Initializable {
 	 * recorrido += " U ["; } } return recorrido; }
 	 */
 
+	/**
+	 * Devuelve una cadena de texto que indica la continuidad de la función. Si la
+	 * variable discontinuidad es verdadera, la función es discontinua y se devuelve
+	 * la cadena "Discontinua". Si la variable discontinuidad es falsa, la función
+	 * es continua y se devuelve la cadena "Continua".
+	 * 
+	 * @return una cadena de texto que indica la continuidad de la función
+	 */
 	private String getContinuidad() {
 		String continuidad;
 		if (discontinuidad) {
@@ -207,6 +248,19 @@ public class GraphController implements Initializable {
 		return continuidad;
 	}
 
+	/**
+	 * Crea una gráfica de línea a partir de la función definida en la propiedad
+	 * functionProperty. Se establecen los ejes x e y con los valores mínimos y
+	 * máximos de sus propiedades correspondientes. Se define un objeto Series para
+	 * agregar los datos de la función evaluados en el rango de los valores del eje
+	 * x, utilizando el objeto FunctionParser. Si la función tiene discontinuidades,
+	 * se agregan múltiples objetos Series para representar las diferentes partes
+	 * continuas de la función. La gráfica resultante se configura sin símbolos y
+	 * con tamaño máximo y se devuelve como un objeto LineChart.
+	 * 
+	 * @return una gráfica de línea que representa la función definida en la
+	 *         propiedad functionProperty
+	 */
 	private LineChart<Number, Number> createGraph() {
 		NumberAxis xAxis = new NumberAxis("x", minXProperty.get(), maxXProperty.get(),
 				Math.max((maxXProperty.get() - minXProperty.get()) / 20, 1));
@@ -314,6 +368,15 @@ public class GraphController implements Initializable {
 		return graphLineChart;
 	}
 
+	/**
+	 * Redondea el valor dado a la cantidad de decimales especificados.
+	 * 
+	 * @param value  el valor a redondear
+	 * @param places la cantidad de decimales a los cuales se quiere redondear
+	 * @return el valor redondeado al número de decimales especificado
+	 * @throws IllegalArgumentException si la cantidad de decimales especificados es
+	 *                                  negativa
+	 */
 	private double round(double value, int places) {
 		if (places < 0)
 			throw new IllegalArgumentException();
@@ -323,6 +386,14 @@ public class GraphController implements Initializable {
 		return bd.doubleValue();
 	}
 
+	/**
+	 * Evalúa la función en el límite ingresado por el usuario. Si el valor evaluado
+	 * en el límite es Infinito, calcula los límites inferior y superior para
+	 * verificar si la función diverge en ese punto. En caso contrario, establece el
+	 * valor del límite evaluado.
+	 * 
+	 * @param event el evento que desencadena la evaluación del límite
+	 */
 	@FXML
 	private void onLimitAction(ActionEvent event) {
 		Double limitFunction = function.evaluateAt(Double.parseDouble(limitX.getText()), 0, 0);
@@ -341,6 +412,11 @@ public class GraphController implements Initializable {
 		}
 	}
 
+	/**
+	 * Invierte el eje X de la gráfica.
+	 * 
+	 * @param event el evento que desencadena la inversión del eje X
+	 */
 	@FXML
 	private void inInvertAxisX(ActionEvent event) {
 		GraphController graph = new GraphController("-" + functionProperty.get(), minXProperty.get(),
@@ -352,6 +428,11 @@ public class GraphController implements Initializable {
 		App.primaryStage.setScene(new Scene(graph.getView(), 1000, 600));
 	}
 
+	/**
+	 * Invierte el eje Y de la gráfica.
+	 * 
+	 * @param event el evento que desencadena la inversión del eje Y
+	 */
 	@FXML
 	private void inInvertAxisY(ActionEvent event) {
 		String newFunction = functionProperty.get().replace("x", "-x");
@@ -364,6 +445,11 @@ public class GraphController implements Initializable {
 		App.primaryStage.setScene(new Scene(graph.getView(), 1000, 600));
 	}
 
+	/**
+	 * Cierra la aplicación después de mostrar una alerta de confirmación.
+	 * 
+	 * @param event el evento que desencadena la salida de la aplicación
+	 */
 	@FXML
 	private void onExit(ActionEvent event) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -377,6 +463,11 @@ public class GraphController implements Initializable {
 		}
 	}
 
+	/**
+	 * Abre una ventana para introducir una nueva función.
+	 * 
+	 * @param event el evento que desencadena la apertura de la nueva ventana
+	 */
 	@FXML
 	private void onNewFunction(ActionEvent event) {
 		StartController controller = new StartController();
@@ -398,6 +489,15 @@ public class GraphController implements Initializable {
 		stage.show();
 	}
 
+	/**
+	 * Devuelve el límite de la función en el infinito negativo. Si el valor
+	 * evaluado en infinito es NaN, retorna "Indeterminado". Si el valor evaluado en
+	 * infinito es Infinito negativo, retorna "-Infinito". Si el valor evaluado en
+	 * infinito es Infinito positivo, retorna "Infinito". De lo contrario, retorna
+	 * el valor evaluado en infinito.
+	 * 
+	 * @return el límite inferior de la función
+	 */
 	private String getLimMinusInf() {
 		Double value = function.evaluateAt(Double.NEGATIVE_INFINITY, 0, 0);
 		if (Double.isNaN(value)) {
@@ -409,6 +509,15 @@ public class GraphController implements Initializable {
 		}
 	}
 
+	/**
+	 * Devuelve el límite de la función en el infinito. Si el valor evaluado en
+	 * infinito es NaN, retorna "Indeterminado". Si el valor evaluado en infinito es
+	 * Infinito negativo, retorna "-Infinito". Si el valor evaluado en infinito es
+	 * Infinito positivo, retorna "Infinito". De lo contrario, retorna el valor
+	 * evaluado en infinito.
+	 * 
+	 * @return el límite inferior de la función
+	 */
 	private String getLimInf() {
 		Double value = function.evaluateAt(Double.POSITIVE_INFINITY, 0, 0);
 		if (Double.isNaN(value)) {

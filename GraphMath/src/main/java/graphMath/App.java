@@ -8,6 +8,14 @@ import javafx.stage.Stage;
 public class App extends Application {
 	public static Stage primaryStage;
 	private StartController controller = new StartController();
+
+	/**
+	 * Método que se utiliza para iniciar la aplicación, creando la ventana e
+	 * iniciándola.
+	 * 
+	 * @param primaryStage El objeto Stage principal de la aplicación.
+	 * @throws Exception Si hay un error al iniciar la aplicación.
+	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		App.primaryStage = primaryStage;

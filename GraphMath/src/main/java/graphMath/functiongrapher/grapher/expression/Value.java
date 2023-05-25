@@ -1,16 +1,23 @@
 package graphMath.functiongrapher.grapher.expression;
 
-public class Value extends Quantity{
-	
+/**
+ * Valor numérico.
+ */
+public class Value extends Quantity {
+
 	protected double d;
-	
+
 	public Value(double d) {
 		this.d = d;
 	}
 
+	/**
+	 * Devuelve el valor numérico.
+	 * 
+	 * @return El valor numérico.
+	 */
 	@Override
 	public double getValue() {
 		return d;
 	}
-
 }

@@ -70,6 +70,18 @@ public class EcuationController implements Initializable {
 	@FXML
 	private BorderPane view;
 
+	/**
+	 * Constructor de la clase GraphController que crea una instancia del
+	 * controlador de gráficos y establece los valores de las propiedades de
+	 * función, mínimos y máximos de coordenadas en 4 dimensiones.
+	 * 
+	 * @param functionX Define la función de la incógnita x a graficar.
+	 * @param functionY Define la función de la incógnita y a graficar.
+	 * @param minX      Define el valor mínimo del eje X en el gráfico.
+	 * @param maxX      Define el valor máximo del eje X en el gráfico.
+	 * @param minY      Define el valor mínimo del eje Y en el gráfico.
+	 * @param maxY      Define el valor máximo del eje Y en el gráfico.
+	 */
 	public EcuationController(String functionX, String functionY, int minX, int maxX, int minY, int maxY) {
 		functionXProperty.setValue(functionX);
 		functionYProperty.setValue(functionY);
@@ -79,7 +91,7 @@ public class EcuationController implements Initializable {
 		maxYProperty.setValue(maxY);
 
 		cutPoints = new ArrayList<>();
-		
+
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/EcuationView.fxml"));
 			loader.setController(this);
@@ -89,26 +101,39 @@ public class EcuationController implements Initializable {
 		}
 	}
 
+	/**
+	 * Inicializa el controlador de gráficos. Crea un nuevo ExpressionParser para
+	 * analizar las funciones en X y Y definidas por las propiedades
+	 * correspondientes. Luego, crea una nueva tarea con un método para generar la
+	 * gráfica a partir de la función analizada, la cual se ejecuta en un hilo
+	 * separado. Cuando la tarea termina, la gráfica resultante se agrega a la vista
+	 * de la ventana principal y el texto que muestra los puntos de corte se
+	 * actualiza según los valores de los puntos de corte calculados.
+	 * 
+	 * @param location  la ubicación del recurso FXML utilizado para inicializar el
+	 *                  controlador
+	 * @param resources los recursos utilizados por la aplicación
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
 		parser = new ExpressionParser();
 		functionX = parser.parse(functionXProperty.get());
 		functionY = parser.parse(functionYProperty.get());
-		
+
 		Task<LineChart<Number, Number>> task = new Task<LineChart<Number, Number>>() {
 			@Override
 			protected LineChart<Number, Number> call() throws Exception {
 				return createGraph();
 			}
 		};
-		
+
 		task.setOnSucceeded(ex -> {
 			try {
 				hbView.getChildren().clear();
 				hbView.getChildren().add(task.get());
 				HBox.setHgrow(task.get(), Priority.ALWAYS);
-				pointText.setText(cutPoints.size()==0?"No hay puntos de corte":cutPoints.toString());
+				pointText.setText(cutPoints.size() == 0 ? "No hay puntos de corte" : cutPoints.toString());
 			} catch (InterruptedException | ExecutionException e) {
 				e.printStackTrace();
 			}
@@ -116,6 +141,11 @@ public class EcuationController implements Initializable {
 		new Thread(task).start();
 	}
 
+	/**
+	 * Cierra la aplicación después de mostrar una alerta de confirmación.
+	 * 
+	 * @param event el evento que desencadena la salida de la aplicación
+	 */
 	@FXML
 	void onExit(ActionEvent event) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -129,6 +159,11 @@ public class EcuationController implements Initializable {
 		}
 	}
 
+	/**
+	 * Abre una ventana para introducir una nueva función.
+	 * 
+	 * @param event el evento que desencadena la apertura de la nueva ventana
+	 */
 	@FXML
 	void onNewFunction(ActionEvent event) {
 		StartController controller = new StartController();
@@ -150,6 +185,20 @@ public class EcuationController implements Initializable {
 		stage.show();
 	}
 
+	/**
+	 * Crea una gráfica de línea a partir de las funciones definidas en la propiedad
+	 * functionXProperty y functionYProperty. Se establecen los ejes x e y con los
+	 * valores mínimos y máximos de sus propiedades correspondientes, considerando
+	 * una separación adecuada de los intervalos según el rango de los valores del
+	 * eje. Se define un objeto Series para agregar los datos de la función
+	 * evaluados en el rango de los valores del eje x o y, utilizando los objetos
+	 * FunctionParser. Si la función tiene discontinuidades, se agregan múltiples
+	 * objetos Series para representar las diferentes partes continuas de la
+	 * función. La gráfica resultante se configura sin símbolos y con tamaño máximo.
+	 * 
+	 * @return una gráfica de línea que representa las funciones definidas en la
+	 *         propiedad functionXProperty y functionYProperty.
+	 */
 	private LineChart<Number, Number> createGraph() {
 
 		NumberAxis xAxis = new NumberAxis("", minXProperty.get(), maxXProperty.get(),
@@ -220,8 +269,8 @@ public class EcuationController implements Initializable {
 
 //-----------------------------------------------------------------------------------------------------------------------------------------
 
-		dataSeries = new XYChart.Series<>(); 
-		
+		dataSeries = new XYChart.Series<>();
+
 		for (Double y = (double) minXProperty.get(); y <= maxXProperty.get(); y += ratio) {
 			Double fY = functionY.evaluateAt(0, y, 0);
 			Double yRound = round(y, 3);
@@ -266,7 +315,7 @@ public class EcuationController implements Initializable {
 					}
 //					System.out.println(yRound + " , " + fYRound);
 					dataSeries.getData().add((new XYChart.Data<>(yRound, fYRound)));
-					if(fYRound==round(functionX.evaluateAt(y, 0, 0), 3)) {
+					if (fYRound == round(functionX.evaluateAt(y, 0, 0), 3)) {
 						cutPoints.add(new Point(yRound, fYRound));
 //						System.out.println("Puntos de corte: "+cutPoints);
 					}
@@ -284,6 +333,15 @@ public class EcuationController implements Initializable {
 		return graphLineChart;
 	}
 
+	/**
+	 * Redondea el valor dado a la cantidad de decimales especificados.
+	 * 
+	 * @param value  el valor a redondear
+	 * @param places la cantidad de decimales a los cuales se quiere redondear
+	 * @return el valor redondeado al número de decimales especificado
+	 * @throws IllegalArgumentException si la cantidad de decimales especificados es
+	 *                                  negativa
+	 */
 	private double round(double value, int places) {
 		if (places < 0)
 			throw new IllegalArgumentException();
@@ -293,6 +351,11 @@ public class EcuationController implements Initializable {
 		return bd.doubleValue();
 	}
 
+	/**
+	 * Retorna la vista del controlador.
+	 * 
+	 * @return La vista del controlador.
+	 */
 	public BorderPane getView() {
 		return view;
 	}

@@ -23,8 +23,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 
+/**
+ * Controlador de la vista de inicio.
+ */
 public class StartController implements Initializable {
+
+	// Parser de expresiones matemáticas
 	private ExpressionParser parser;
+	// Función a graficar
 	private Function function;
 
 	@FXML
@@ -51,6 +57,10 @@ public class StartController implements Initializable {
 	@FXML
 	private BorderPane view;
 
+	/**
+	 * Constructor de la clase StartController. Carga la vista de inicio desde el
+	 * archivo FXML correspondiente.
+	 */
 	public StartController() {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/StartView.fxml"));
@@ -61,6 +71,12 @@ public class StartController implements Initializable {
 		}
 	}
 
+	/**
+	 * Inicializa el controlador cuando se carga la vista.
+	 * 
+	 * @param location  La ubicación del recurso.
+	 * @param resources Los recursos utilizados.
+	 */
 	public void initialize(URL location, ResourceBundle resources) {
 		parser = new ExpressionParser();
 		functionButton.disableProperty().bind(functionTextField.textProperty().isEmpty());
@@ -73,6 +89,12 @@ public class StartController implements Initializable {
 		Platform.runLater(() -> functionTextField.requestFocus());
 	}
 
+	/**
+	 * Método que se ejecuta al hacer clic en el botón "Hoja de Operaciones",
+	 * mostrando la hoja de operaciones en una nueva ventana.
+	 * 
+	 * @param event El evento que se produce al hacer clic en el botón.
+	 */
 	@FXML
 	void onCheatSheetClicked(ActionEvent event) {
 		CheatSheetController cheatSheetController = new CheatSheetController();
@@ -83,6 +105,13 @@ public class StartController implements Initializable {
 		stage.show();
 	}
 
+	/**
+	 * Método que se ejecuta al hacer clic en el botón "Resolver". Si la ecuación a
+	 * graficar está mal escrita o no se puede parsear, muestra una alerta de error.
+	 * Si es correcta, lanza la ventana que carga una gráfica para la ecuación dada.
+	 * 
+	 * @param event El evento que se produce al hacer clic en el botón.
+	 */
 	@FXML
 	void onResolveAction(ActionEvent event) {
 		if (functionTextField.getText().contains("=")) {
@@ -243,12 +272,19 @@ public class StartController implements Initializable {
 		}
 	}
 
+	/**
+	 * Lanza un nuevo gráfico para dos ecuaciones, con valores mínimos y
+	 * máximos para los ejes X e Y.
+	 * 
+	 * @param functionX La función en términos de X.
+	 * @param functionY La función en términos de Y.
+	 */
 	private void launchEcuation(String functionX, String functionY) {
 		int minX = minXText.textProperty().isEmpty().get() ? -10 : Integer.parseInt(minXText.getText());
 		int maxX = maxXText.textProperty().isEmpty().get() ? 10 : Integer.parseInt(maxXText.getText());
 		int minY = minYText.textProperty().isEmpty().get() ? -10 : Integer.parseInt(minYText.getText());
 		int maxY = maxYText.textProperty().isEmpty().get() ? 10 : Integer.parseInt(maxYText.getText());
-		
+
 		if (!getView().getScene().getWindow().equals(App.primaryStage)) {
 			((Stage) getView().getScene().getWindow()).close();
 		}
@@ -261,6 +297,13 @@ public class StartController implements Initializable {
 		App.primaryStage.setScene(new Scene(graph.getView(), 1000, 600));
 	}
 
+	/**
+	 * Lanza un nuevo gráfico para una ecuación, con valores mínimos y
+	 * máximos para los ejes X e Y.
+	 * 
+	 * @param functionX La función en términos de X.
+	 * @param functionY La función en términos de Y.
+	 */
 	private void launchGraph() {
 		int minX = minXText.textProperty().isEmpty().get() ? -10 : Integer.parseInt(minXText.getText());
 		int maxX = maxXText.textProperty().isEmpty().get() ? 10 : Integer.parseInt(maxXText.getText());
@@ -270,7 +313,7 @@ public class StartController implements Initializable {
 		if (!getView().getScene().getWindow().equals(App.primaryStage)) {
 			((Stage) getView().getScene().getWindow()).close();
 		}
-		
+
 		GraphController graph = new GraphController(functionTextField.getText(), minX, maxX, minY, maxY);
 		App.primaryStage.setMinHeight(600);
 		App.primaryStage.setMinWidth(1000);
@@ -279,6 +322,11 @@ public class StartController implements Initializable {
 		App.primaryStage.setScene(new Scene(graph.getView(), 1000, 600));
 	}
 
+	/**
+	 * Retorna la vista del controlador.
+	 * 
+	 * @return La vista del controlador.
+	 */
 	public BorderPane getView() {
 		return view;
 	}

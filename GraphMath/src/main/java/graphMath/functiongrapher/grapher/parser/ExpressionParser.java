@@ -26,20 +26,39 @@ import graphMath.functiongrapher.grapher.expression.Tangent;
 import graphMath.functiongrapher.grapher.expression.Value;
 import graphMath.functiongrapher.grapher.expression.Variable;
 
+/**
+ * @author USUARIO
+ *
+ */
 public class ExpressionParser {
-	
+
 	private Error error;
 	private Variable x;
 	private Variable y;
 	private Variable z;
-	
+
+	/**
+	 * Constructor de la clase ExpressionParser. Crea una nueva instancia de Error y
+	 * tres nuevas instancias de Variable (x, y, z).
+	 */
+
 	public ExpressionParser() {
 		error = new Error();
 		x = new Variable();
 		y = new Variable();
 		z = new Variable();
 	}
-	
+
+	/**
+	 * Analiza y parsea una expresión dada en forma de cadena de texto para crear
+	 * una nueva instancia de Function.
+	 * 
+	 * @param expr la cadena de texto que contiene la expresión a ser analizada y
+	 *             parseada
+	 * @return una nueva instancia de Function si se pudo realizar el parsing, null
+	 *         en caso contrario
+	 */
+
 	public Function parse(String expr) {
 		TokenString tokens = tokenize(expr);
 		if (tokens != null) {
@@ -52,21 +71,29 @@ public class ExpressionParser {
 			}
 			return new Function(root, x, y, z);
 		}
-		
 		error.makeError("Parsing of the function \"" + expr + "\" failed.");
 		return null;
 	}
-	
+
+	/**
+	 * Analiza la expresión dada en forma de cadena de texto para separarla en
+	 * tokens y construir un objeto TokenString.
+	 * 
+	 * @param expr la cadena de texto que contiene la expresión a ser tokenizada
+	 * @return un objeto TokenString con los tokens obtenidos si se pudo realizar la
+	 *         tokenización, null en caso contrario
+	 */
+
 	private TokenString tokenize(String expr) {
 		TokenString tkString = new TokenString();
-		
+
 		String name = "";
 		String number = "";
 		int numDecimals = 0;
 		for (int i = 0; i < expr.length(); i++) {
 			char currentChar = expr.charAt(i);
 			boolean special = false;
-			
+
 			if (Character.isAlphabetic(currentChar)) {
 				if (currentChar == 'x') {
 					tkString.addToken(new Token(TokenType.X));
@@ -87,10 +114,11 @@ public class ExpressionParser {
 				tkString.addToken(new Token(type));
 				name = "";
 			}
-			
+
 			if (Character.isDigit(currentChar) || currentChar == '.') {
 				if (currentChar == '.') {
-					if (numDecimals == 0) number += currentChar;
+					if (numDecimals == 0)
+						number += currentChar;
 					numDecimals++;
 				} else {
 					number += currentChar;
@@ -101,17 +129,26 @@ public class ExpressionParser {
 				number = "";
 				numDecimals = 0;
 			}
-			
+
 			if (!(special || currentChar == ' ')) {
-				if (currentChar == '(') tkString.addToken(new Token(TokenType.OPEN_PARENTHESES));
-				else if (currentChar == ')') tkString.addToken(new Token(TokenType.CLOSE_PARENTHESES));
-				else if (currentChar == ',') tkString.addToken(new Token(TokenType.COMMA));
-				else if (currentChar == '+') tkString.addToken(new Token(TokenType.PLUS));
-				else if (currentChar == '-') tkString.addToken(new Token(TokenType.MINUS));
-				else if (currentChar == '*') tkString.addToken(new Token(TokenType.TIMES));
-				else if (currentChar == '/') tkString.addToken(new Token(TokenType.DIVIDED_BY));
-				else if (currentChar == '^') tkString.addToken(new Token(TokenType.RAISED_TO));
-				else if (currentChar == '%') tkString.addToken(new Token(TokenType.MODULO));
+				if (currentChar == '(')
+					tkString.addToken(new Token(TokenType.OPEN_PARENTHESES));
+				else if (currentChar == ')')
+					tkString.addToken(new Token(TokenType.CLOSE_PARENTHESES));
+				else if (currentChar == ',')
+					tkString.addToken(new Token(TokenType.COMMA));
+				else if (currentChar == '+')
+					tkString.addToken(new Token(TokenType.PLUS));
+				else if (currentChar == '-')
+					tkString.addToken(new Token(TokenType.MINUS));
+				else if (currentChar == '*')
+					tkString.addToken(new Token(TokenType.TIMES));
+				else if (currentChar == '/')
+					tkString.addToken(new Token(TokenType.DIVIDED_BY));
+				else if (currentChar == '^')
+					tkString.addToken(new Token(TokenType.RAISED_TO));
+				else if (currentChar == '%')
+					tkString.addToken(new Token(TokenType.MODULO));
 				else {
 					error.makeError("The character '" + currentChar + "' is not allowed!");
 					return null;
@@ -132,19 +169,24 @@ public class ExpressionParser {
 			number = "";
 			numDecimals = 0;
 		}
-		
+
 		return tkString;
 	}
-	
+
+	/**
+	 * Calcula el resultado de una operación matemática siguiendo las reglas de
+	 * orden de operaciones, en sentido inverso. Las operaciones son, en orden:
+	 * suma, resta, división, multiplicación, módulo, exponenciación, función,
+	 * paréntesis, variables y números (Realizadas de derecha a izquierda).
+	 * 
+	 * @param tokens una cadena de tokens que representan la expresión matemática a
+	 *               evaluar
+	 * @return un objeto Quantity con el resultado de la operación
+	 */
 	private Quantity doOrderOfOperations(TokenString tokens) {
-		/*
-		 * Order of operations in reverse:
-		 * Addition, Subtraction, Division, Multiplication, Modulo, Exponentiation, Function, Parentheses, Variables, Numbers
-		 * All from right to left 
-		 */
-		int location = 0;	// Location of some operator
+		int location = 0; // Localización del operador
 		Quantity ret = new Value(0.0);
-		
+
 		location = scanFromRight(tokens, TokenType.PLUS);
 		if (location != -1) {
 			TokenString left = tokens.split(0, location);
@@ -188,7 +230,8 @@ public class ExpressionParser {
 										TokenString paramString = tokens.split(location + 2, endParams);
 										ret = parseFunctionParams(paramString, tokens.tokenAt(location).type);
 									}
-								} else if (tokens.getLength() >= 2 && tokens.tokenAt(tokens.getLength() - 1).type == TokenType.CLOSE_PARENTHESES
+								} else if (tokens.getLength() >= 2
+										&& tokens.tokenAt(tokens.getLength() - 1).type == TokenType.CLOSE_PARENTHESES
 										&& tokens.tokenAt(0).type == TokenType.OPEN_PARENTHESES) {
 									TokenString inParentheses = tokens.split(1, tokens.getLength() - 1);
 									ret = doOrderOfOperations(inParentheses);
@@ -219,10 +262,23 @@ public class ExpressionParser {
 				}
 			}
 		}
-		
+
 		return ret;
 	}
 
+	/**
+	 * Calcula los parámetros de una función matemática según el tipo de token
+	 * especificado, siguiendo las reglas de orden de operaciones en sentido
+	 * inverso. Las operaciones son: suma, resta, división, multiplicación, módulo,
+	 * exponenciación, función, paréntesis, variables y números. Todas se realizan
+	 * de derecha a izquierda.
+	 * 
+	 * @param paramString una cadena de tokens que representan los parámetros de la
+	 *                    función matemática a evaluar
+	 * @param type        el tipo de token que representa la función matemática a
+	 *                    evaluar
+	 * @return un objeto Quantity con el resultado de la operación
+	 */
 	private Quantity parseFunctionParams(TokenString paramString, TokenType type) {
 		List<TokenString> params = new ArrayList<>();
 		int start = 0;
@@ -234,9 +290,10 @@ public class ExpressionParser {
 			}
 		}
 		params.add(paramString.split(start, paramString.getLength()));
-		
-		if (params.size() == 0) return null;
-		
+
+		if (params.size() == 0)
+			return null;
+
 		if (params.size() == 1) {
 			Quantity param1 = doOrderOfOperations(params.get(0));
 			switch (type) {
@@ -278,6 +335,18 @@ public class ExpressionParser {
 		return null;
 	}
 
+	/**
+	 * Método que devuelve la posición final de los parámetros de una función en una
+	 * cadena de tokens.
+	 * 
+	 * @param tokens   Un objeto TokenString que representa la cadena de tokens de
+	 *                 la función.
+	 * @param location La ubicación del token donde comienzan los parámetros de la
+	 *                 función.
+	 * @return La posición final de los parámetros de la función o -1 si no se
+	 *         encuentra el cierre de paréntesis.
+	 */
+
 	private int getFunctionParamsEnd(TokenString tokens, int location) {
 		int openParentheses = 0;
 		for (int i = location; i < tokens.getLength(); i++) {
@@ -294,6 +363,17 @@ public class ExpressionParser {
 		return -1;
 	}
 
+	/**
+	 * Método que escanea una cadena de tokens desde la derecha en busca del token
+	 * especificado, ignorando los tokens entre paréntesis.
+	 * 
+	 * @param tokens Un objeto TokenString que representa la cadena de tokens a
+	 *               escanear.
+	 * @param type   El tipo de token que se está buscando.
+	 * @return La posición del último token encontrado o -1 si no se encuentra el
+	 *         token especificado.
+	 */
+
 	private int scanFromRight(TokenString tokens, TokenType type) {
 		int openParentheses = 0;
 		for (int i = tokens.getLength() - 1; i >= 0; i--) {
@@ -308,7 +388,19 @@ public class ExpressionParser {
 		}
 		return -1;
 	}
-	
+
+	/**
+	 * Método que escanea una cadena de tokens desde la derecha en busca de uno de
+	 * varios tipos de token especificados, ignorando los tokens entre paréntesis.
+	 * 
+	 * @param tokens Un objeto TokenString que representa la cadena de tokens a
+	 *               escanear.
+	 * @param types  Un arreglo de TokenType que contiene los tipos de token que se
+	 *               están buscando.
+	 * @return La posición del último token encontrado o -1 si no se encuentra
+	 *         ninguno de los tipos de token especificados.
+	 */
+
 	private int scanFromRight(TokenString tokens, TokenType[] types) {
 		int openParentheses = 0;
 		for (int i = tokens.getLength() - 1; i >= 0; i--) {
@@ -329,14 +421,22 @@ public class ExpressionParser {
 		}
 		return -1;
 	}
-	
+
+	/**
+	 * Método que realiza una sustitución para convertir un operador de resta unaria
+	 * en una multiplicación por -1. Esto es, por ejemplo, que -x pasa a ser (0-1)*x
+	 * 
+	 * @param tokens Un objeto TokenString que representa la cadena de tokens a
+	 *               escanear y modificar.
+	 */
+
 	private void substituteUnaryMinus(TokenString tokens) {
 		Token prev = null;
 		for (int i = 0; i < tokens.getLength(); i++) {
 			Token t = tokens.tokenAt(i);
 			if (t.type == TokenType.MINUS) {
-				if (prev == null || !(prev.type == TokenType.NUMBER || prev.type == TokenType.X || prev.type == TokenType.CLOSE_PARENTHESES)) {
-					// Ex: -x becomes (0-1)*x
+				if (prev == null || !(prev.type == TokenType.NUMBER || prev.type == TokenType.X
+						|| prev.type == TokenType.CLOSE_PARENTHESES)) {
 					tokens.remove(i);
 					tokens.insert(i, new Token(TokenType.TIMES));
 					tokens.insert(i, new Token(TokenType.CLOSE_PARENTHESES));
@@ -351,8 +451,15 @@ public class ExpressionParser {
 		}
 	}
 
+	/**
+	 * Método que verifica si hay un número correcto de paréntesis abiertos y
+	 * cerrados en una cadena de tokens.
+	 * 
+	 * @param tokens Un objeto TokenString que representa la cadena de tokens a
+	 *               verificar.
+	 */
+
 	private void checkParentheses(TokenString tokens) {
-		// Test for correct number of parentheses
 		int openParentheses = 0;
 		for (int i = 0; i < tokens.getLength(); i++) {
 			Token t = tokens.tokenAt(i);
@@ -370,11 +477,20 @@ public class ExpressionParser {
 		}
 	}
 
+	/**
+	 * Método que busca y devuelve el TokenType correspondiente al nombre
+	 * especificado.
+	 * 
+	 * @param name El nombre del TokenType que se desea buscar.
+	 * @return El TokenType correspondiente al nombre especificado, o null si no se
+	 *         encuentra ninguno.
+	 */
 
 	private TokenType getTokenTypeByName(String name) {
 		TokenType[] values = TokenType.FUNCTIONS;
 		for (TokenType v : values) {
-			if (v.name.equals(name)) return v;
+			if (v.name.equals(name))
+				return v;
 		}
 		return null;
 	}
