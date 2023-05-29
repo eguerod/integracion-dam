@@ -21,8 +21,8 @@ En lo referente a tecnologías para el desarrollo de el aplicativo, se han utili
 - **SceneBuilder** es una aplicación de desarrollo de interfaces de JavaFX, que se ha usado para el desarrollo de la interfaz del aplicativo. (https://gluonhq.com/products/scene-builder/)
 
 - **VisualStudioCode** se ha usado para desarrollar los ficheros de la documentación, el estilo y otros ficheros escritos. (https://code.visualstudio.com/)
-  
-  
+
+- Además. se ha hecho uso de **Inno Setup** (https://jrsoftware.org/isinfo.php) para la compilación del archivo *.exe* que se utilizará como parte de la distribución.
 
 En cuanto al funcionamiento del aplicativo, hay dos partes principales: la programática y la de la interfaz, que están interrelacionadas.
 

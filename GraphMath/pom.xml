@@ -48,4 +48,32 @@
 			<version>12.3.1</version>
 		</dependency>
 	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>io.github.fvarrui</groupId>
+				<artifactId>javapackager</artifactId>
+				<version>1.7.0</version>
+				<executions>
+					<execution>
+						<id>windows</id>
+						<phase>package</phase>
+						<goals>
+							<goal>package</goal>
+						</goals>
+						<configuration>
+							<mainClass>graphMath.Main</mainClass>
+							<bundleJre>true</bundleJre>
+							<winConfig>
+								<icoFile>mathgraph.ico</icoFile>
+								<generateMsi>false</generateMsi>
+							</winConfig>
+							<createZipball>true</createZipball>
+							<customizedJre>false</customizedJre>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>
