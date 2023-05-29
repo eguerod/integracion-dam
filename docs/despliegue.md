@@ -12,8 +12,8 @@ En cuanto a la instalación, es simple, permitiendo elegir el idioma, así como 
 
 ![imgs\install\Idioma.png](imgs\install\Idioma.png)
 
-![Acceso.png](C:\Users\USUARIO\Desktop\ProyectoFinal\integracion-dam\docs\imgs\install\Acceso.png)
+![Acceso.png](imgs\install\Acceso.png)
 
-![Listo.png](C:\Users\USUARIO\Desktop\ProyectoFinal\integracion-dam\docs\imgs\install\Listo.png)
+![Listo.png](imgs\install\Listo.png)
 
 ![Ventana.png](imgs\install\Ventana.png)
