@@ -10,10 +10,10 @@ Finalmente, la distribución se ha hecho a traves del apartado de [Releases](htt
 
 En cuanto a la instalación, es simple, permitiendo elegir el idioma, así como si se quiere crear un enlace al escritorio.
 
-![Idioma.jpg](imgs\install\Idioma.jpg)
+![Idioma.jpg](imgs/install/Idioma.jpg)
 
-![Acceso.jpg](imgs\install\Acceso.jpg)
+![Acceso.jpg](imgs/install/Acceso.jpg)
 
-![Listo.jpg](imgs\install\Listo.jpg)
+![Listo.jpg](imgs/install/Listo.jpg)
 
-![Ventana.jpg](imgs\install\Ventana.jpg)
+![Ventana.jpg](imgs/install/Ventana.jpg)
