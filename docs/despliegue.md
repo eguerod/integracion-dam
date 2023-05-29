@@ -10,7 +10,7 @@ Finalmente, la distribución se ha hecho a traves del apartado de [Releases](htt
 
 En cuanto a la instalación, es simple, permitiendo elegir el idioma, así como si se quiere crear un enlace al escritorio.
 
-![imgs\install\Idioma.png](imgs\install\Idioma.png)
+![Idioma.png](imgs\install\Idioma.png)
 
 ![Acceso.png](imgs\install\Acceso.png)
 
