@@ -28,6 +28,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuBar;
@@ -473,6 +474,7 @@ public class GraphController implements Initializable {
 		StartController controller = new StartController();
 		Stage stage = new Stage();
 		stage.setScene(new Scene(controller.getView(), 500, 500));
+		stage.getIcons().add(new Image("images/mathgraph.png"));
 		stage.initOwner(App.primaryStage);
 		stage.setMinWidth(500);
 		stage.setMinHeight(500);

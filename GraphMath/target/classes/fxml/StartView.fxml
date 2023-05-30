@@ -24,7 +24,7 @@
                   <Image url="@../images/mathgraph.png" />
                </image>
             </ImageView>
-            <Label text="MathGraph" VBox.vgrow="NEVER">
+            <Label text="GraphMath" VBox.vgrow="NEVER">
                <font>
                   <Font name="Calibri Bold" size="30.0" />
                </font>
