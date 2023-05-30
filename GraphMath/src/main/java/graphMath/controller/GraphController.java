@@ -474,6 +474,7 @@ public class GraphController implements Initializable {
 		StartController controller = new StartController();
 		Stage stage = new Stage();
 		stage.setScene(new Scene(controller.getView(), 500, 500));
+		stage.setTitle("Nueva función");
 		stage.getIcons().add(new Image("images/mathgraph.png"));
 		stage.initOwner(App.primaryStage);
 		stage.setMinWidth(500);

@@ -171,6 +171,7 @@ public class EcuationController implements Initializable {
 		Stage stage = new Stage();
 		stage.setScene(new Scene(controller.getView(), 500, 500));
 		stage.initOwner(App.primaryStage);
+		stage.setTitle("Nueva función");
 		stage.getIcons().add(new Image("images/mathgraph.png"));
 		stage.setMinWidth(500);
 		stage.setMinHeight(500);
